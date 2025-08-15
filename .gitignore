@@ -1,0 +1,310 @@
+# Lebenslauf Generator Pro - .gitignore
+
+# Betriebssystem-spezifische Dateien
+# ===================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Editor und IDE Dateien
+# ======================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Vim
+*.swp
+*.swo
+*~
+tags
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Entwicklungsumgebung
+# ===================
+
+# Node.js (falls später verwendet)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python (falls später verwendet)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Logs und Debugging
+# ==================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.grunt
+.nyc_output
+.coverage
+.lcov
+coverage/
+*.lcov
+.sass-cache/
+.connect.lock
+.typings/
+
+# Temporäre Dateien
+# =================
+*.tmp
+*.temp
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Build-Ausgaben (falls später Build-Tools verwendet werden)
+# =========================================================
+dist/
+build/
+public/build/
+.output/
+.vercel/
+.netlify/
+
+# Backup-Dateien
+# ==============
+*.backup
+*.bak
+*.orig
+*.rej
+*~
+
+# Komprimierte Dateien
+# ===================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Datenbank-Dateien
+# =================
+*.sqlite
+*.sqlite3
+*.db
+
+# Konfigurationsdateien mit sensiblen Daten
+# =========================================
+.env
+.env.local
+.env.*.local
+config.local.js
+secrets.json
+
+# Test-Coverage
+# =============
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+.coverage.*
+
+# Dokumentation Build
+# ===================
+docs/_build/
+site/
+
+# Lokale Entwicklungsdateien
+# ==========================
+.local/
+.vscode/settings.json
+
+# Service Worker Cache (falls implementiert)
+# ==========================================
+sw.js
+workbox-*.js
+
+# User-spezifische CV-Daten (Datenschutz)
+# =======================================
+user-data/
+exports/
+backups/
+*.cv.json
+
+# Screenshot-Tools temporäre Dateien
+# ==================================
+screenshots/temp/
+*.screenshot.tmp
+
+# Live Server temporäre Dateien
+# =============================
+.live-server/
+
+# Playwright Test-Ausgaben
+# ========================
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Lokale Assets (außer den dokumentierten)
+# ========================================
+assets/temp/
+assets/user-uploads/
+
+# Experimentelle Features
+# ======================
+experimental/
+prototypes/
+sandbox/
+
+# Lokale Konfiguration
+# ===================
+.local.config.js
+local.settings.json
+
+# Fehlerberichte
+# ==============
+*.crashlog
+*.crash
+*.stackdump
+
+# Profiling-Daten
+# ===============
+*.prof
+*.cpuprofile
+*.heapprofile
+
+# Sicherheitsdateien
+# ==================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Lokalisierung temporäre Dateien
+# ===============================
+*.pot
+*.mo
+
+# Verschiedenes
+# =============
+.sass-cache/
+.connect.lock
+.typings/
+.history/
+.ionide/
