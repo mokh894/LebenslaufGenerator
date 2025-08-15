@@ -115,34 +115,29 @@ php -S localhost:8000
 - Perfekt für die Überprüfung von Lücken oder Überschneidungen
 
 ## 🎨 Screenshots
-
 ### Hauptansicht
-![Hauptansicht](assets/main-interface.png)
+![Hauptansicht](assets/assets-app-overview.png)
 *Moderne Benutzeroberfläche mit Tabbed Navigation*
 
 ### Design-Anpassung
-![Design Tab](assets/design-tab.png)
+![Design Tab](assets/assets-content-tab.png)
 *Umfassende Anpassungsoptionen für Vorlagen und Farben*
 
 ### Inhalt-Bearbeitung
-![Inhalt Tab](assets/content-tab.png)
+![Inhalt Tab](assets/assets-layout-tab.png)
 *Intuitive Bearbeitung mit Rich-Text-Editor und Foto-Upload*
 
-### Layout-Optionen
-![Layout Tab](assets/layout-tab.png)
-*Flexible Layout-Optionen für verschiedene CV-Stile*
+### Haupt-Interface
+![Haupt-Interface](assets/assets-main-interface.png)
+*Übersichtliche Navigation und schnelle Zugriffsmöglichkeiten*
 
 ### Abschnitt-Bearbeitung
-![Modal Bearbeitung](assets/section-editing.png)
+![Modal Bearbeitung](assets/assets-section-editing.png)
 *Professionelle Modal-Dialoge für detaillierte Bearbeitung*
 
-### Timeline-Ansicht
-![Timeline](assets/timeline-view.png)
-*Chronologische Übersicht der Karriereentwicklung*
-
-### Mobile Ansicht
-![Mobile](assets/mobile-view.png)
-*Vollständig responsive für alle Geräte*
+### Komplettes CV-Beispiel
+![Komplettes CV](assets/enhanced-cv-generator-complete-final.png)
+*Gesamte Ansicht eines erstellten Lebenslaufs*
 
 ## 🏗️ Architektur
 
