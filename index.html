@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf Generator Pro</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/templates.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <i class="fas fa-file-alt"></i>
+                <h1>Lebenslauf Generator Pro</h1>
+            </div>
+            <div class="header-center">
+                <div class="cv-selector">
+                    <select id="cv-selector" class="cv-select">
+                        <option value="default">Neuer Lebenslauf</option>
+                    </select>
+                    <button id="new-cv-btn" class="btn btn-icon" title="Neuen Lebenslauf erstellen">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="language-toggle">
+                    <button id="lang-de" class="lang-btn active" data-lang="de">DE</button>
+                    <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button id="undo-btn" class="btn btn-icon" title="Rückgängig" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button id="redo-btn" class="btn btn-icon" title="Wiederherstellen" disabled>
+                    <i class="fas fa-redo"></i>
+                </button>
+                <button id="import-btn" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> Importieren
+                </button>
+                <button id="export-btn" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Exportieren
+                </button>
+                <button id="save-btn" class="btn btn-secondary">
+                    <i class="fas fa-save"></i> Speichern
+                </button>
+                <button id="print-btn" class="btn btn-primary">
+                    <i class="fas fa-print"></i> PDF Export
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Sidebar Editor -->
+            <aside class="editor-sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="design">
+                        <i class="fas fa-palette"></i> Design
+                    </button>
+                    <button class="tab-btn" data-tab="content">
+                        <i class="fas fa-edit"></i> Inhalt
+                    </button>
+                    <button class="tab-btn" data-tab="layout">
+                        <i class="fas fa-th-large"></i> Layout
+                    </button>
+                </div>
+
+                <!-- Design Tab -->
+                <div class="tab-content active" id="design-tab">
+                    <div class="editor-section">
+                        <h3><i class="fas fa-swatchbook"></i> Vorlage wählen</h3>
+                        <div class="template-selector">
+                            <div class="template-card active" data-template="modern">
+                                <div class="template-preview"></div>
+                                <span>Modern</span>
+                            </div>
+                            <div class="template-card" data-template="professional">
+                                <div class="template-preview"></div>
+                                <span>Professionell</span>
+                            </div>
+                            <div class="template-card" data-template="minimal">
+                                <div class="template-preview"></div>
+                                <span>Minimal</span>
+                            </div>
+                            <div class="template-card" data-template="creative">
+                                <div class="template-preview"></div>
+                                <span>Kreativ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-section">
+                        <h3><i class="fas fa-paint-brush"></i> Anpassungen</h3>
+                        <div class="customization-panel">
+                            <div class="control-group">
+                                <label for="font-family">
+                                    <i class="fas fa-font"></i> Schriftart:
+                                </label>
+                                <select id="font-family">
+                                    <option value="Inter">Inter</option>
+                                    <option value="Source Sans Pro">Source Sans Pro</option>
+                                    <option value="Playfair Display">Playfair Display</option>
+                                    <option value="Roboto">Roboto</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="font-size">
+                                    <i class="fas fa-text-height"></i> Schriftgröße:
+                                </label>
+                                <input type="range" id="font-size" min="12" max="18" value="14">
+                                <span class="range-value">14px</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="primary-color">
+                                    <i class="fas fa-palette"></i> Primärfarbe:
+                                </label>
+                                <div class="color-input-group">
+                                    <input type="color" id="primary-color" value="#2563eb">
+                                    <div class="color-presets">
+                                        <div class="color-preset" data-color="#2563eb"></div>
+                                        <div class="color-preset" data-color="#059669"></div>
+                                        <div class="color-preset" data-color="#dc2626"></div>
+                                        <div class="color-preset" data-color="#7c3aed"></div>
+                                        <div class="color-preset" data-color="#ea580c"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="accent-color">
+                                    <i class="fas fa-fill-drip"></i> Akzentfarbe:
+                                </label>
+                                <input type="color" id="accent-color" value="#1e40af">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Tab -->
+                <div class="tab-content" id="content-tab">
+                    <div class="editor-section">
+                        <h3><i class="fas fa-user"></i> Persönliche Daten</h3>
+                        <div class="photo-upload-section">
+                            <div class="photo-preview" id="photo-preview">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Foto hinzufügen</span>
+                            </div>
+                            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('photo-upload').click()">
+                                <i class="fas fa-camera"></i> Foto wählen
+                            </button>
+                        </div>
+                        <form class="cv-form" id="personal-form">
+                            <div class="form-row">
+                                <input type="text" id="firstName" placeholder="Vorname" required>
+                                <input type="text" id="lastName" placeholder="Nachname" required>
+                            </div>
+                            <input type="email" id="email" placeholder="E-Mail">
+                            <input type="tel" id="phone" placeholder="Telefon">
+                            <input type="url" id="website" placeholder="Website/Portfolio">
+                            <input type="url" id="linkedin" placeholder="LinkedIn Profil">
+                            <div class="form-row">
+                                <input type="text" id="address" placeholder="Adresse">
+                                <input type="text" id="city" placeholder="Stadt">
+                                <input type="text" id="postalCode" placeholder="PLZ">
+                            </div>
+                            <input type="date" id="birthDate" placeholder="Geburtsdatum">
+                            <input type="text" id="nationality" placeholder="Staatsangehörigkeit">
+                            <div class="rich-text-editor">
+                                <div class="editor-toolbar">
+                                    <button type="button" class="toolbar-btn" data-command="bold">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button type="button" class="toolbar-btn" data-command="italic">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button type="button" class="toolbar-btn" data-command="insertUnorderedList">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                </div>
+                                <div id="profile" contenteditable="true" class="rich-text-content" placeholder="Professionelle Zusammenfassung..."></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="editor-section">
+                        <h3><i class="fas fa-list"></i> Abschnitte verwalten</h3>
+                        <div class="sections-manager">
+                            <div id="sections-list" class="sortable-sections">
+                                <!-- Dynamic sections will be added here -->
+                            </div>
+                            <button id="add-section-btn" class="btn btn-primary btn-block">
+                                <i class="fas fa-plus"></i> Neuen Abschnitt hinzufügen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layout Tab -->
+                <div class="tab-content" id="layout-tab">
+                    <div class="editor-section">
+                        <h3><i class="fas fa-columns"></i> Layout-Optionen</h3>
+                        <div class="layout-selector">
+                            <div class="layout-option active" data-layout="single">
+                                <div class="layout-preview">
+                                    <div class="layout-col full"></div>
+                                </div>
+                                <span>Einspaltig</span>
+                            </div>
+                            <div class="layout-option" data-layout="two-column">
+                                <div class="layout-preview">
+                                    <div class="layout-col"></div>
+                                    <div class="layout-col"></div>
+                                </div>
+                                <span>Zweispaltig</span>
+                            </div>
+                            <div class="layout-option" data-layout="sidebar">
+                                <div class="layout-preview">
+                                    <div class="layout-col narrow"></div>
+                                    <div class="layout-col wide"></div>
+                                </div>
+                                <span>Seitenleiste</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-section">
+                        <h3><i class="fas fa-ruler"></i> Abstände & Größen</h3>
+                        <div class="spacing-controls">
+                            <div class="control-group">
+                                <label for="section-spacing">Abschnittsabstand:</label>
+                                <input type="range" id="section-spacing" min="1" max="3" value="2" step="0.5">
+                                <span class="range-value">Normal</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="line-height">Zeilenhöhe:</label>
+                                <input type="range" id="line-height" min="1.2" max="2" value="1.6" step="0.1">
+                                <span class="range-value">1.6</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CV Preview -->
+            <div class="cv-preview">
+                <div class="preview-toolbar">
+                    <div class="zoom-controls">
+                        <button id="zoom-out" class="btn btn-icon" title="Verkleinern">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <span id="zoom-level">100%</span>
+                        <button id="zoom-in" class="btn btn-icon" title="Vergrößern">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                    </div>
+                    <div class="view-controls">
+                        <button id="timeline-view" class="btn btn-icon" title="Zeitstrahl-Ansicht">
+                            <i class="fas fa-timeline"></i>
+                        </button>
+                        <button id="fullscreen-preview" class="btn btn-icon" title="Vollbild">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="cv-preview-container">
+                    <div id="cv-container" class="cv-container modern-template" data-layout="single">
+                        <!-- CV content will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dynamic Sections Modal -->
+    <div id="section-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Abschnitt bearbeiten</h2>
+                <button class="close-btn" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-actions">
+                <button id="save-section" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Speichern
+                </button>
+                <button id="cancel-section" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Abbrechen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Section Modal -->
+    <div id="add-section-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Neuen Abschnitt hinzufügen</h2>
+                <button class="close-btn" id="close-add-section-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="section-types-grid">
+                    <div class="section-type-card" data-type="experience">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Berufserfahrung</h4>
+                        <p>Arbeitsstellen und Positionen</p>
+                    </div>
+                    <div class="section-type-card" data-type="education">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Ausbildung</h4>
+                        <p>Studium und Schulbildung</p>
+                    </div>
+                    <div class="section-type-card" data-type="skills">
+                        <i class="fas fa-cogs"></i>
+                        <h4>Fähigkeiten</h4>
+                        <p>Technische und persönliche Kompetenzen</p>
+                    </div>
+                    <div class="section-type-card" data-type="languages">
+                        <i class="fas fa-globe"></i>
+                        <h4>Sprachen</h4>
+                        <p>Sprachkenntnisse und Niveau</p>
+                    </div>
+                    <div class="section-type-card" data-type="projects">
+                        <i class="fas fa-project-diagram"></i>
+                        <h4>Projekte</h4>
+                        <p>Wichtige Projekte und Arbeiten</p>
+                    </div>
+                    <div class="section-type-card" data-type="certifications">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Zertifikate</h4>
+                        <p>Bescheinigungen und Qualifikationen</p>
+                    </div>
+                    <div class="section-type-card" data-type="volunteer">
+                        <i class="fas fa-hands-helping"></i>
+                        <h4>Ehrenamt</h4>
+                        <p>Freiwillige Tätigkeiten</p>
+                    </div>
+                    <div class="section-type-card" data-type="awards">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Auszeichnungen</h4>
+                        <p>Preise und Ehrungen</p>
+                    </div>
+                    <div class="section-type-card" data-type="publications">
+                        <i class="fas fa-book"></i>
+                        <h4>Publikationen</h4>
+                        <p>Veröffentlichungen und Artikel</p>
+                    </div>
+                    <div class="section-type-card" data-type="interests">
+                        <i class="fas fa-heart"></i>
+                        <h4>Interessen</h4>
+                        <p>Hobbys und persönliche Interessen</p>
+                    </div>
+                    <div class="section-type-card" data-type="references">
+                        <i class="fas fa-user-friends"></i>
+                        <h4>Referenzen</h4>
+                        <p>Kontaktpersonen und Empfehlungen</p>
+                    </div>
+                    <div class="section-type-card" data-type="custom">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>Benutzerdefiniert</h4>
+                        <p>Eigener Abschnittstyp</p>
+                    </div>
+                </div>
+                <div id="custom-section-form" class="custom-section-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="custom-section-title">Abschnittstitel:</label>
+                        <input type="text" id="custom-section-title" placeholder="z.B. Forschungsprojekte">
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-section-icon">Icon (FontAwesome Klasse):</label>
+                        <input type="text" id="custom-section-icon" placeholder="z.B. fas fa-flask">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-add-section" class="btn btn-primary" disabled>
+                    <i class="fas fa-plus"></i> Abschnitt hinzufügen
+                </button>
+                <button id="cancel-add-section" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Abbrechen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline View Modal -->
+    <div id="timeline-modal" class="modal fullscreen-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-timeline"></i> Zeitstrahl-Ansicht</h2>
+                <button class="close-btn" id="close-timeline-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="timeline-container" class="timeline-container">
+                    <!-- Timeline will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Help -->
+    <div class="shortcuts-help">
+        <h4>Tastenkürzel</h4>
+        <ul>
+            <li><kbd>Strg</kbd> + <kbd>S</kbd> Speichern</li>
+            <li><kbd>Strg</kbd> + <kbd>Z</kbd> Rückgängig</li>
+            <li><kbd>Strg</kbd> + <kbd>Y</kbd> Wiederholen</li>
+            <li><kbd>Strg</kbd> + <kbd>P</kbd> Drucken</li>
+            <li><kbd>Esc</kbd> Modals schließen</li>
+        </ul>
+    </div>
+
+    <!-- Hidden file inputs -->
+    <input type="file" id="import-file" accept=".json" style="display: none;">
+    <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+
+    <script src="js/storage.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
