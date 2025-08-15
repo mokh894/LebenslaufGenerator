@@ -2,7 +2,7 @@
 
 Ein moderner, professioneller Lebenslauf-Generator für deutsche CVs mit erweiterten Funktionen und flexibler Anpassung.
 
-![Lebenslauf Generator Pro](assets/app-overview.png)
+![Lebenslauf Generator Pro](assets/assets-app-overview.png)
 
 ## 🌟 Funktionen
 
